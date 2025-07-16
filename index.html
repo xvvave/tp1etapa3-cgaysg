@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  </head>
+
+  <body>
+    <div id="onboarding" style="display:none; flex-direction:column; align-items:center; justify-content:center; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:1000; font-family: 'Inter', sans-serif;">
+      <h2 style="color:white; margin-bottom:16px;">Selecciona una paleta</h2>
+      <div id="paleta-preview"></div>
+      <div style="color:white; margin-top:16px; text-align:center;">
+        <h3 style="margin-bottom:12px; font-size:1.2em;">¿Cómo seleccionar?</h3>
+        <p style="margin:8px 0;">1. Haz click en la pantalla</p>
+        <p style="margin:8px 0;">2. Emite un sonido fuerte o presiona la barra espaciadora</p>
+      </div>
+    </div>
+    <div id="loading-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:1500; align-items:center; justify-content:center; flex-direction:column; color:white; font-size:2em; text-align:center; font-family: 'Inter', sans-serif;">
+      <div style="margin-bottom:20px;">⏳</div>
+      <div>Cargando...</div>
+    </div>
+    <div id="canvas-container" style="width:100vw; height:100vh;"></div>
+    <div id="mic-error" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center; flex-direction:column; color:white; font-size:1.5em; text-align:center; font-family: 'Inter', sans-serif;">
+      <p>⚠️ No se pudo acceder al micrófono.<br>Por favor, acepta el permiso para usar el micrófono y recarga la página.<br>Si el problema persiste, revisa la configuración de tu navegador.</p>
+    </div>
+    <script src="sound.js"></script>
+    <script src="audioLogic.js"></script>
+    <script src="globals.js"></script>
+    <script src="preload.js"></script>
+    <script src="grid.js"></script>
+    <script src="brushes.js"></script>
+    <script src="composition.js"></script>
+    <script src="ui.js"></script>  
+    <script src="input.js"></script> 
+    <script src="sketch.js"></script>
+  </body>
+</html>
