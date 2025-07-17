@@ -184,6 +184,20 @@ function mostrarPaletaPreview(idx) {
   const paleta = paletas[idx];
   const preview = document.getElementById('paleta-preview');
   preview.innerHTML = '';
+  
+  // Contenedor principal con flexbox para organizar paleta e imagen
+  let contenedorPrincipal = document.createElement('div');
+  contenedorPrincipal.style.display = 'flex';
+  contenedorPrincipal.style.alignItems = 'center';
+  contenedorPrincipal.style.gap = '20px';
+  contenedorPrincipal.style.justifyContent = 'center';
+  
+  // Contenedor para la paleta de colores
+  let contenedorPaleta = document.createElement('div');
+  contenedorPaleta.style.display = 'flex';
+  contenedorPaleta.style.flexDirection = 'column';
+  contenedorPaleta.style.alignItems = 'center';
+  
   // Mostrar el nombre de la paleta
   let nombreDiv = document.createElement('div');
   nombreDiv.textContent = paleta.nombre;
@@ -191,7 +205,7 @@ function mostrarPaletaPreview(idx) {
   nombreDiv.style.fontSize = '1.3em';
   nombreDiv.style.marginBottom = '10px';
   nombreDiv.style.textAlign = 'center';
-  preview.appendChild(nombreDiv);
+  contenedorPaleta.appendChild(nombreDiv);
 
   let coloresPreview = [];
   
@@ -256,12 +270,39 @@ function mostrarPaletaPreview(idx) {
   }
   
   coloresPreview = coloresPreview.slice(0, 8);
+  
+  // Crear contenedor para los colores
+  let contenedorColores = document.createElement('div');
+  contenedorColores.style.display = 'flex';
+  contenedorColores.style.flexWrap = 'wrap';
+  contenedorColores.style.justifyContent = 'center';
+  contenedorColores.style.gap = '8px';
+  contenedorColores.style.maxWidth = '200px';
+  
   coloresPreview.forEach(color => {
     const div = document.createElement('div');
     div.className = 'color-preview';
     div.style.background = color;
-    preview.appendChild(div);
+    contenedorColores.appendChild(div);
   });
+  
+  contenedorPaleta.appendChild(contenedorColores);
+  contenedorPrincipal.appendChild(contenedorPaleta);
+  
+  // Agregar imagen de la obra si es una obra específica (no "Todas")
+  if (idx >= 1 && idx <= 4) {
+    let imagenObra = document.createElement('img');
+    imagenObra.src = `data/obra${idx}.png`;
+    imagenObra.style.width = '120px';
+    imagenObra.style.height = '120px';
+    imagenObra.style.objectFit = 'cover';
+    imagenObra.style.borderRadius = '8px';
+    imagenObra.style.border = '2px solid rgba(255,255,255,0.3)';
+    imagenObra.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
+    contenedorPrincipal.appendChild(imagenObra);
+  }
+  
+  preview.appendChild(contenedorPrincipal);
 }
 
 function cicloPaletas() {
